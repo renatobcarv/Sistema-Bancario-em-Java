@@ -1,0 +1,83 @@
+import java.sql.SQLOutput;
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        System.out.println("Seja bem vindo ao banco");
+
+        // TIPOS DA LOGICA
+        int poupanca = 2;
+        int corrente = 1;
+        char tipoDeConta = 0;
+        double saldo;
+
+        // LOGICA (CONTA)
+
+        System.out.println("Digite seu nome completo:");
+        String nome = input.nextLine();
+        System.out.println("Digite o tipo de conta: 1. Para Corrente // 2. Para Poupança");
+        switch (tipoDeConta) {
+            case 1:
+                corrente = 1;
+                System.out.println(" 1. Conta Corrente");
+            case 2:
+                poupanca = 2;
+                System.out.println("2. Conta Poupança");
+                break;
+        }
+        int tipo = input.nextInt();
+        String tipoConta = (tipo == 1) ? "Corrente" : "Poupança";
+        System.out.println("Digite o saldo:");
+        saldo = input.nextDouble();
+        //Fim da lógica da conta
+
+        //Exibição de Dados
+
+        System.out.println("CONFIRME OS DADOS A SEGUIR");
+        System.out.println("Nome:" + nome);
+        System.out.println("Tipo de conta:" + tipoConta);
+        System.out.println("Saldo:" + saldo);
+
+        // TIPOS PARA CONTA
+
+        double tranferirSaldo = 0;
+        int consultaSaldo;
+        int receberValor;
+        int sair;
+        int conta;
+        int selecao = 0;
+        String menu = """
+                1- Consultar saldos
+                2- Receber valor
+                3- Transferir valor
+                4- Sair
+                """;
+        //LOGICA DO MENU INFINITO
+        System.out.println("O que deseja fazer agora:");
+        while(selecao != 4) {
+            System.out.println(menu);
+            selecao = input.nextInt();
+
+            if (selecao == 1) {
+                System.out.println("Seu saldo é: " + saldo);
+            } else if (selecao == 2) {
+                System.out.println("Digite o valor para receber:");
+                int valorReceber = input.nextInt();
+                saldo += valorReceber;
+                System.out.println("Saldo atualizado para: " + (valorReceber + saldo));
+            }
+            if (selecao == 3) {
+                System.out.println("Digite o valor para tranferir: ");
+                tranferirSaldo = input.nextDouble();
+            } if (tranferirSaldo > saldo) {
+                System.out.println("Saldo insuficiente");
+            } else  {
+                saldo -= tranferirSaldo;
+                System.out.println("Saldo atualizado: " + saldo);
+            }
+
+
+        }
+    }
+}
